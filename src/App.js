@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Movie from "./Movie";
+import "./App.css";
 
 
 
@@ -16,7 +17,7 @@ class App extends React.Component{
         data: {movies}
       }
     } = await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating');
-    // this.setState({movies:movies}) 아래코드로 단축해서 표현 가능
+    // this.setState({movies:movies}) 
     this.setState({movies, isLoading: false, })
 
 
@@ -26,13 +27,15 @@ class App extends React.Component{
   }
   render() {
   const { isLoading, movies } = this.state;
-  console.log(movies)
     return (
-      <div>
-          
-        {isLoading 
-          ? "Loading..."
-          : movies.map(movie => (
+      <section class="container">         
+        {isLoading ? (
+           <div class="loader">
+            <span class="loader__text">Loading...</span>
+          </div>
+      ) : (
+        <div class="movies">
+          {movies.map(movie => (
             <Movie 
               key={movie.id}
                 id={movie.id} 
@@ -40,11 +43,13 @@ class App extends React.Component{
                 title={movie.title} 
                 summary={movie.summary} 
                 poster={movie.medium_cover_image} 
-                />
+                />     
           ))}
-      </div>
-    )
+          </div>
+      )}
+      </section>
+    );
+   }
   }
-}
 
 export default App;
