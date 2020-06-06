@@ -32,5 +32,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://lociworld.github.io/movie_app_2020/"
+  "homepage": "https://lociworld.github.io/movie_app_2020/",
+  "devDependencies": {
+    "style-loader": "^1.2.1"
+  }
 }
